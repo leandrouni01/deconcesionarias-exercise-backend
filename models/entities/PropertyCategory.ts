@@ -7,13 +7,12 @@ export class PropertyCategory extends BaseModel {
 
   @AllowNull(false)
   @Column
-  name:string;
+  name!:string;
 
   @AllowNull(false)
   @Column
-  icon:string
+  icon!:string
 
   @HasMany(() => VehicleProperty)
-  vehicle_properties: VehicleProperty[];
-  
+  vehicle_properties!: VehicleProperty[]; 
 }

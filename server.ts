@@ -21,9 +21,13 @@ export class Server {
       Router.initializeRoutes(Server.app)
 
       Server.app.use(errorHandler)
-      Server.app.set('views', path.join(__dirname, './views'))
-      Server.app.set('view engine', 'ejs')
-      Server.app.use(express.static(path.join(__dirname, './public')))
+      if (process.env.NODE_ENV === 'production') {
+        const buildPath = path.join(__dirname, '..', 'front');
+        Server.app.use(express.static(buildPath));
+        Server.app.get('*', (req, res) => {
+          return res.sendFile(path.resolve(buildPath, 'index.html'));
+        })
+      }
 
       try {
         await Server.initializeDatabase()
@@ -32,19 +36,23 @@ export class Server {
       }
 
       return Server.app.listen(Server.app.get('port'))
-    } catch (error) {
+    } catch (error:any) {
       throw new InternalServerError(error.message)
     }
   }
 
   private static initializeDatabase() {
-    const sequelizeConfig = config
+    const sequelizeConfig = config.default.databaseURL
     const models = new Models(sequelizeConfig)
     return models.initModels()
   }
 
   private static configureApp() {
     const nodeEnv = process.env.NODE_ENV
+    console.log(nodeEnv)
+    if(nodeEnv) {
+      Server.app.set('env', nodeEnv)
+    }
     Server.app.set('port', process.env.PORT || 3000)
     Server.app.use(express.urlencoded({ extended: true }))
     Server.app.use(express.json())

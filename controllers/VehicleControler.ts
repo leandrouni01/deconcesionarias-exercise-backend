@@ -1,6 +1,5 @@
 import { VehicleQuery } from "../queries/VehicleQuery";
-import { IUpdateVehicle } from "../interfaces/VehicleInterfaces";
-import { IVehicle } from "../interfaces/VehicleInterfaces";
+import { IUpdateVehicle, IVehicle } from "../interfaces/VehicleInterfaces";
 
 
 export class VehicleController {

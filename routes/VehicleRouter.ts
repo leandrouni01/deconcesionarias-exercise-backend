@@ -30,7 +30,7 @@ export class VehicleRouter extends BaseRouter {
   }
   
   private async updateVehicle(req: express.Request, res:express.Response) {
-    const id:number = +req.body.id;
+    const id:number = +req.params.id;
     const name:string = req.body.name;
     const updatedVehicle = await this.vehicleController.updateVehicle({name, id});
     return res.json(updatedVehicle);
@@ -46,7 +46,7 @@ export class VehicleRouter extends BaseRouter {
     this.router.get('/', this.getVehicles.bind(this));
     this.router.get('/:id', this.getVehicleById.bind(this));
     this.router.post('/', this.createVehicle.bind(this));
-    this.router.put('/', this.updateVehicle.bind(this));
+    this.router.put('/:id', this.updateVehicle.bind(this));
     this.router.delete('/:id', this.deleteVehicle.bind(this));
   }
 

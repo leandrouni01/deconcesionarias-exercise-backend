@@ -20,11 +20,11 @@ export class BaseModel extends Model {
   id?: number
 
   @CreatedAt
-  createdAt: Date
+  createdAt!: Date
 
   @UpdatedAt
-  updatedAt: Date
+  updatedAt!: Date
 
   @DeletedAt
-  deletedAt: Date
+  deletedAt!: Date
 }

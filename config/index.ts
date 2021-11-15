@@ -7,4 +7,5 @@ export default {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   dialect: "postgres",
+  databaseURL: process.env.DB_URL
 };

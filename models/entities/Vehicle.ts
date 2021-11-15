@@ -7,9 +7,9 @@ export class Vehicle extends BaseModel {
 
   @AllowNull(false)
   @Column
-  name: string;
+  name!: string;
 
   @HasMany(() => PropertyValue)
-  properties:string;
+  properties!:PropertyValue[];
   
 }

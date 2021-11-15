@@ -8,20 +8,20 @@ export class PropertyValue extends BaseModel {
 
   @AllowNull(false)
   @Column
-  value: number;
+  value!: number;
 
   @ForeignKey(() => Vehicle)
   @Column
-  vehicle_FK:number
+  vehicle_FK!:number
 
   @BelongsTo(() => Vehicle)
-  vehicle: Vehicle
+  vehicle!: Vehicle
 
   @ForeignKey(() => VehicleProperty)
   @Column
-  vehicle_property_FK:number
+  vehicle_property_FK!:number
 
   @BelongsTo(() => VehicleProperty)
-  vehicle_property: VehicleProperty
+  vehicle_property!: VehicleProperty
 
 }
